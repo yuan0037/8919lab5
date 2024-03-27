@@ -98,10 +98,12 @@ The premium pricing tier was selected because it provides more symmetric key alg
         String str = "Hello!";
             byte[] plaintext = str.getBytes(StandardCharsets.UTF_8);
         EncryptResult encryptionResult = cryptoClient.encrypt(EncryptionAlgorithm.RSA_OAEP, plaintext);
+        String encryptedText = new String(encryptionResult.getCipherText(), StandardCharsets.UTF_8);
+        System.out.println("After encryption: " + encryptedText);        
 ```
 * 2.10 Decrypt the encrypted string
 ```
-    DecryptResult decryptionResult = cryptoClient.decrypt(EncryptionAlgorithm.RSA_OAEP,
+        DecryptResult decryptionResult = cryptoClient.decrypt(EncryptionAlgorithm.RSA_OAEP,
                 encryptionResult.getCipherText());
         String decyprtedText = new String(decryptionResult.getPlainText(), StandardCharsets.UTF_8);
         System.out.println(decyprtedText);
